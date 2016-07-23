@@ -32,12 +32,14 @@ class App extends Component {
     });
   }
 
-  handleCropOnClick = (e) => {
-    // todo
-  }
-
   handleResetOnClick = (e) => {
     this.refs.plyr.reset(this.state.start);
+  }
+
+  getFilePath = () => {
+    const { start, end, videoId } = this.state;
+    const baseUrl = this.props.baseUrl;
+    return `${baseUrl}/${videoId}?start=${start}&duration=${end - start}`;
   }
 
   render() {
@@ -62,8 +64,9 @@ class App extends Component {
             />
           </section>
           <section>
-            <button className="btn" onClick={this.handleCropOnClick}>Crop</button>
+            <a className="btn" href={this.getFilePath()} download={this.state.videoId + '.mp3'}>Crop</a>
             <button className="btn" onClick={this.handleResetOnClick}>Reset</button>
+
           </section>
           <p>Crop duration: {formatSecs(this.state.end-this.state.start)}</p>
           <p>Crop start: {formatSecs(this.state.start)}</p>
