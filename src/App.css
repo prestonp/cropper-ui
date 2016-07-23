@@ -1,24 +1,69 @@
-.App {
-  text-align: center;
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: spin infinite 20s linear;
-  height: 80px;
+body {
+  color: #aaa;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 20px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.container {
+  margin: 0 1em;
 }
 
-.App-intro {
-  font-size: large;
+@media (min-width: 700px) {
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+section {
+  margin: 2em 0;
+}
+
+label {
+  display: block;
+
+}
+
+.input {
+  display: block;
+  border: 1px solid #eee;
+  border-radius: 0.3em;
+  width: 100%;
+  padding: 1em;
+}
+
+input {
+  color: #aaa;
+  font-size: 16px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 1em 2em;
+  border: 1px solid #3f51b5;
+  border-radius: 0.3em;
+  background: none;
+  color: #3f51b5;
+  font-size: 16px;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #3f51b5;
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .btn {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0;
+    margin-right: .5em;
+  }
 }
