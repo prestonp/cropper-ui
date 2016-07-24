@@ -6,7 +6,8 @@ import '../css/plyr.css';
 class PlyrComponent extends React.Component {
   static propTypes = {
     'options': PropTypes.object,    // this is an options object from the docs
-    'setDuration': PropTypes.func   // function(time) for updating video length
+    'setDuration': PropTypes.func,  // function(time) for updating video length
+    'setCurrent': PropTypes.func    // function(time) for updating current time
   }
 
   componentDidMount () {
@@ -18,7 +19,9 @@ class PlyrComponent extends React.Component {
     });
 
     this.el.addEventListener('timeupdate', () => {
-      if (this.el.plyr.embed.getCurrentTime() >= this.props.end) {
+      const current = this.el.plyr.embed.getCurrentTime();
+      this.props.setCurrent(current);
+      if (current >= this.props.end) {
         this.el.plyr.embed.pauseVideo();
       }
     });

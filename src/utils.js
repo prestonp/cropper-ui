@@ -1,4 +1,5 @@
 exports.formatSecs = function(secs) {
+  secs = Math.floor(secs);
   return Math.floor(secs / 60) + ':' + exports.leftpad(secs % 60, 2, 0);
 }
 
