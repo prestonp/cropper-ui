@@ -2,7 +2,7 @@ import React from 'react';
 
 module.exports = ({ url }) => {
   const style = {
-    backgroundImage: `url(http://i.ytimg.com/vi/${url}/maxresdefault.jpg)`
+    backgroundImage: `url(https://i.ytimg.com/vi/${url}/maxresdefault.jpg)`
   }
   return (
     <div className="img-background-parent">
