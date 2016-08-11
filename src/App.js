@@ -43,10 +43,6 @@ class App extends Component {
     });
   }
 
-  handleRewindOnClick = (e) => {
-    this.refs.plyr.reset(this.state.start);
-  }
-
   getFilePath = () => {
     const { start, end, videoId } = this.state;
     const baseUrl = this.props.baseUrl;
@@ -60,7 +56,6 @@ class App extends Component {
       <View {...this.state} {...this.props}
         onVideoIdChange={this.handleVideoIdOnChange}
         onValuesChange={this.handleValuesChange}
-        onRewindClick={this.handleRewindOnClick}
         getFilePath={this.getFilePath}
         setDuration={this.setDuration}
         setCurrent={this.setCurrent} />
