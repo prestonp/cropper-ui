@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/react-input-range.css';
 import './App.css';
+import ImgBackground from './components/img-background';
 
 import Crop from './components/crop';
 
@@ -53,12 +54,16 @@ class App extends Component {
     const View = this.state.view;
 
     return (
-      <View {...this.state} {...this.props}
-        onVideoIdChange={this.handleVideoIdOnChange}
-        onValuesChange={this.handleValuesChange}
-        getFilePath={this.getFilePath}
-        setDuration={this.setDuration}
-        setCurrent={this.setCurrent} />
+      <main>
+        <ImgBackground url={this.state.videoId} />
+        <View {...this.state} {...this.props}
+          onVideoIdChange={this.handleVideoIdOnChange}
+          onValuesChange={this.handleValuesChange}
+          getFilePath={this.getFilePath}
+          setDuration={this.setDuration}
+          setCurrent={this.setCurrent}
+          setView={this.setView} />
+      </main>
     );
   }
 }
