@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './css/react-input-range.css';
 import './App.css';
-import PlyrComponent from './components/plyr-component';
-import ImgBackground from './components/img-background';
-import { formatSecs } from './utils';
-import InputRange from 'react-input-range';
+
+import Crop from './components/crop';
 
 class App extends Component {
   constructor(props) {
@@ -14,17 +12,24 @@ class App extends Component {
       end: 0,
       duration: 1,
       current: 0,
-      videoId: 'kOkQ4T5WO9E'
+      videoId: 'kOkQ4T5WO9E',
+      view: Crop
     };
+  }
 
+  setView = (view) => {
+    this.setState({ view });
+    return this;
   }
 
   setDuration = (duration) => {
     this.setState({ duration, end: duration });
+    return this;
   }
 
   setCurrent = (current) => {
     this.setState({ current });
+    return this;
   }
 
   handleVideoIdOnChange = (e) => {
@@ -49,41 +54,16 @@ class App extends Component {
   }
 
   render() {
+    const View = this.state.view;
+
     return (
-      <div>
-        <ImgBackground url={this.state.videoId} />
-        <div className="container">
-          <section>
-            <label> Video ID
-            <input className="input" type="text" onChange={this.handleVideoIdOnChange} value={this.state.videoId}></input>
-            </label>
-          </section>
-        </div>
-        <div className="container">
-          <PlyrComponent {...this.state} setDuration={this.setDuration} setCurrent={this.setCurrent} ref={'plyr'}/>
-          <section>
-            <div className="info">
-              <label>Start <div>{formatSecs(this.state.start)}</div></label>
-              <label>End <div>{formatSecs(this.state.end)}</div></label>
-              <label>Current <div>{formatSecs(this.state.current)}</div></label>
-              <label>Duration <div>{formatSecs(this.state.end-this.state.start)}</div></label>
-            </div>
-          </section>
-        </div>
-        <div className="controls">
-          <button className="btn" onClick={this.handleRewindOnClick}>Rewind</button>
-          <div className="cropper-slider">
-            <InputRange
-              maxValue={this.state.duration}
-              minValue={0}
-              value={{min: this.state.start, max: this.state.end}}
-              onChange={this.handleValuesChange}
-              formatLabel={formatSecs}
-            />
-          </div>
-          <a className="btn" href={this.getFilePath()} download={this.state.videoId + '.mp3'}>Crop</a>
-        </div>
-      </div>
+      <View {...this.state} {...this.props}
+        onVideoIdChange={this.handleVideoIdOnChange}
+        onValuesChange={this.handleValuesChange}
+        onRewindClick={this.handleRewindOnClick}
+        getFilePath={this.getFilePath}
+        setDuration={this.setDuration}
+        setCurrent={this.setCurrent} />
     );
   }
 }
