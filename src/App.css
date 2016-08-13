@@ -175,3 +175,36 @@ input:focus {
 .InputRange-label {
   color: hsla(0, 0%, 100%, 0.6);
 }
+
+.progress {
+  background-color:#e6e5e4;
+  height:10px;
+  position:relative;
+  width:100%;
+  overflow: hidden;
+}
+
+.progress .indeterminate {
+  background-color: #00a9e0;
+}
+
+.progress .indeterminate:after {
+  content: '';
+  width:256px;
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left;
+  animation: indeterminate 1s infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -256px;
+  }
+  100% {
+    left: calc(100% + 256px);
+  }
+}

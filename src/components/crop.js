@@ -3,6 +3,7 @@ import PlyrComponent from './plyr-component';
 import { formatSecs } from '../utils';
 import InputRange from 'react-input-range';
 import Upload from './upload';
+import api from '../api';
 
 export default class Crop extends Component {
   handleRewindOnClick = (e) => {
@@ -10,9 +11,18 @@ export default class Crop extends Component {
   }
 
   handleUploadClick = (e) => {
-    // todo request crop
-    this.props.setView(Upload);
-    // todo request SSE polling
+    const { baseUrl, videoId, start, duration } = this.props;
+
+    api.crop(baseUrl, videoId, start, duration, (err, response) => {
+      if (!err && response.status === 200) {
+        this.props.setFile(response.body);
+        this.props.setView(Upload);
+      } else {
+        // TODO better error handling
+        alert('Could not crop!');
+        console.error(err, response);
+      }
+    });
   }
 
   render() {
