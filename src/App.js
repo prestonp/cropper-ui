@@ -14,8 +14,13 @@ class App extends Component {
       duration: 1,
       current: 0,
       videoId: 'kOkQ4T5WO9E',
-      view: Crop
+      view: Crop,
+      file: null
     };
+  }
+
+  setFile = (file) => {
+    this.setState({ file });
   }
 
   setView = (view) => {
@@ -62,7 +67,8 @@ class App extends Component {
           getFilePath={this.getFilePath}
           setDuration={this.setDuration}
           setCurrent={this.setCurrent}
-          setView={this.setView} />
+          setView={this.setView}
+          setFile={this.setFile} />
       </main>
     );
   }
